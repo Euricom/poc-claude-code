@@ -29,4 +29,8 @@ pnpm lint
 - [TailwindCSS](https://tailwindcss.com/) - Styling
 - [React Router](https://reactrouter.com/) - Routing
 
+# Prime the AI
 
+```
+Read README.md, CLAUDE.md, ai_docs/*, and run `git ls-files` to understand this codebase.
+```

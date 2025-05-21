@@ -111,7 +111,3 @@
   - Use query parameters for filtering and pagination
   - Document rate limits and pagination details
 
-- **Related Rules**
-  - See [project-structure.mdc](mdc:.cursor/rules/project-structure.mdc) for file organization
-  - See [testing.mdc](mdc:.cursor/rules/testing.mdc) for testing guidelines
-
