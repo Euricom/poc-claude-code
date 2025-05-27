@@ -1,4 +1,4 @@
-import { createContext, ReactNode, use, useEffect, useState } from "react"
+import { createContext, ReactNode, useContext, useEffect, useState } from "react"
 
 type ThemeType = {
     theme: string
@@ -53,7 +53,7 @@ export function ThemeProvider({
 }
 
 export function useTheme(): ThemeType {
-    const context = use(ThemeContext)
+    const context = useContext(ThemeContext)
 
     if (context === null) {
         throw new Error("useTheme must be used within a ThemeProvider")
