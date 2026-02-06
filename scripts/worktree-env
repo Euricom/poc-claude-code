@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+port_in_use() {
+  lsof -nP -iTCP:"$1" -sTCP:LISTEN &>/dev/null
+}
+
+find_port() {
+  local port=$1
+  while port_in_use "$port"; do
+    ((port++))
+  done
+  echo "$port"
+}
+
+# Hash the handle to get a deterministic port offset (0-99)
+# Use WM_HANDLE if set (by workmux), otherwise fall back to directory name or "default"
+handle="${WM_HANDLE:-${PWD##*/}}"
+hash=$(echo -n "$handle" | md5 | cut -c1-4)
+offset=$((16#$hash % 100))
+
+# Find available ports starting from the hash-based offset
+api_port=$(find_port $((3001 + offset * 10)))
+vite_port=$(find_port $((3000 + offset * 10)))
+
+# Generate .env.local with port overrides
+cat >.env.local <<EOF
+API_PORT=$api_port
+VITE_PORT=$vite_port
+VITE_PUBLIC_API_URL=http://localhost:$api_port
+EOF
+
+echo "Created .env.local with ports: API=$api_port, VITE=$vite_port"

@@ -29,8 +29,17 @@ bun lint
 - [TailwindCSS](https://tailwindcss.com/) - Styling
 - [React Router](https://reactrouter.com/) - Routing
 
+## Multi Agents Workflow Support
+
+This project has support for the following multi-agents workflows:
+
+1. Cursor (see .cursor/worktrees.json)
+2. Conductor (see conductor.json)
+3. Workmux (see .workmux.yaml)
+4. Worktrunk (see ./config/wt.toml)
+
 # Prime the AI
 
 ```
-Read README.md, CLAUDE.md, ai_docs/*, and run `git ls-files` to understand this codebase.
+Read README.md, CLAUDE.md, and run `git ls-files` to understand this codebase.
 ```
