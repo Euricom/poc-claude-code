@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "setup": "bun install; cp $CONDUCTOR_ROOT_PATH/.env .env;"
+    "setup": "direnv allow . && bun install && cp $CONDUCTOR_ROOT_PATH/.env .env"
   }
 }
