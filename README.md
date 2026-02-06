@@ -33,10 +33,52 @@ bun lint
 
 This project has support for the following multi-agents workflows:
 
-1. Cursor (see .cursor/worktrees.json)
-2. Conductor (see conductor.json)
-3. Workmux (see .workmux.yaml)
-4. Worktrunk (see ./config/wt.toml)
+### Cursor (see .cursor/worktrees.json)
+
+Config see .cursor/worktrees.json
+
+You can select 'Local', 'Worktree' or 'Cloud' when creating an agent.
+When selecting 'Worktree' following commands are executed after the worktree is created:
+
+```bash
+# allow direnv permission
+direnv allow
+
+# install dependencies
+bun install
+
+# copy .env file from root worktree to the worktree
+cp $ROOT_WORKTREE_PATH/.env .env
+```
+
+This will allow the agent to run npm scrips with the correct environment variables.
+
+### Conductor (see conductor.json)
+
+### Worktrunk (see ./config/wt.toml)
+
+```bash
+# create new worktree
+worktrunk add switch --create add-user-list
+
+# remove worktree
+worktrunk remove
+```
+
+### Workmux (see .workmux.yaml)
+
+The workmux workflow support auto port allocation for the vite server, using `direnv`
+
+```bash
+# open tmux
+tmux
+
+# create new worktree
+workmux add add-user-list
+
+# remove worktree
+workmux remove
+```
 
 # Prime the AI
 

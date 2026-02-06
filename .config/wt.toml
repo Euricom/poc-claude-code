@@ -43,15 +43,15 @@
 # Use for: installing dependencies, setting up databases, copying configs
 #
 [post-create]
+direnv = "direnv allow {{ worktree_path }}"
 deps = "bun install"
-env = "cp {{ primary_worktree_path }}/packages/web/.env {{ worktree_path }}/packages/web/.env"
+# env = "cp {{ primary_worktree_path }}/packages/web/.env {{ worktree_path }}/packages/web/.env"
 
 # Post-Start: Runs in BACKGROUND after worktree creation (parallel)
 # Use for: dev servers, file watchers, background builds
 # Output logged to .git/wt-logs/{branch}-project-post-start-{name}.log
 #
-[post-start]
-env="export PORT={{ branch | hash_port }}"
+# [post-start]
 # server = "bun dev -- --port {{ branch | hash_port }}"
 # watch = "npm run watch"
 
