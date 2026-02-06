@@ -23,7 +23,7 @@ export const mainMenu: MenuType = [
       {
         title: "Product Page",
         url: "/pages/products",
-      }
+      },
     ],
   },
   {

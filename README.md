@@ -6,19 +6,19 @@ A React-based demo application for best AI practices, built with Vite, TypeScrip
 
 ```bash
 # Install dependencies
-pnpm install
+bun install
 
 # Start development server
-pnpm dev 
+bun run dev 
 
 # Build for production
-pnpm build
+bun build
 
 # Preview production build
-pnpm preview
+bun preview
 
 # Run linting
-pnpm lint
+bun lint
 ```
 
 ## 🛠️ Tech Stack
