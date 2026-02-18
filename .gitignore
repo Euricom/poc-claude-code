@@ -10,3 +10,6 @@ dist-ssr
 .env.*
 !.env.example
 .claude/settings.local.json
+
+# Auto Claude data directory
+.auto-claude/
