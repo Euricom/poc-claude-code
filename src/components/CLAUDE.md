@@ -1,0 +1,1 @@
+Use ShadCN components for the UI.

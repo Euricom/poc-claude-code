@@ -1,0 +1,71 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ghx:*)",
+      "Bash(rg:*)",
+      "Bash(readlink:*)",
+      "Bash(mkdir:*)",
+      "Bash(npx:*)",
+      "Bash(bun:*)",
+      "Bash(tsx:*)",
+      "Bash(find:*)",
+      "Bash(mv:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(cp:*)",
+      "Bash(touch:*)",
+      "Bash(dotnet:*)",
+      "Bash(tree:*)",
+      "Bash(wc:*)",
+      "Bash(git add:*)",
+      "Edit",
+      "Write",
+      "WebSearch",
+      "WebFetch(domain:tanstack.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:ui.shadcn.com)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./**/credentials.json)",
+      "Read(./**/credentials.*.json)",
+      "Read(./**/*.key)",
+      "Read(./**/*.pem)",
+      "Read(./**/*.cer)",
+      "Bash(tee:*)",
+      "Bash(sudo:*)",
+      "Bash(chown:*)",
+      "Bash(chmod:*)",
+      "Bash(ssh:*)"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(git commit:*)",
+      "Bash(git push --force:*)",
+      "Bash(git reset --hard:*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FILE_PATHS=$(jq -r '.tool_input.file_path // empty' | tr '\\n' ' '); [ -n \"$FILE_PATHS\" ] && for FILE in $FILE_PATHS; do if [[ \"$FILE\" =~ \\.(ts|tsx|js|jsx|mjs|cjs|json|md|yaml)$ ]] && [[ ! \"$FILE\" =~ (CLAUDE|claude)\\.md$ ]]; then bunx prettier --write \"$FILE\" 2>/dev/null || true; fi; done",
+            "async": true,
+            "name": "prettier-autoformat"
+          },
+          {
+            "type": "command",
+            "command": "FILE_PATHS=$(jq -r '.tool_input.file_path // empty' | tr '\\n' ' '); [ -n \"$FILE_PATHS\" ] && for FILE in $FILE_PATHS; do if [[ \"$FILE\" =~ \\.(ts|tsx|js|jsx|mjs|cjs)$ ]] && [[ ! \"$FILE\" =~ (CLAUDE|claude)\\.md$ ]]; then bunx oxlint --fix \"$FILE\" 2>/dev/null || true; fi; done",
+            "name": "oxlint-autofix"
+          }
+        ]
+      }
+    ]
+  }
+}
