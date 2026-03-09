@@ -42,7 +42,6 @@ export const useApiInstance = () => {
       body: Record<string, unknown>,
       options: Omit<FetchOptions<"json">, "method" | "body"> = {}
     ) {
-      // console.log("put", url, body, options);
       return fetch<TData>(url, { ...options, method: "PUT", body });
     },
     post<TData = unknown>(
@@ -50,7 +49,6 @@ export const useApiInstance = () => {
       body: Record<string, unknown>,
       options: Omit<FetchOptions<"json">, "method" | "body"> = {}
     ) {
-      // console.log("post", url, body, options);
       return fetch<TData>(url, { ...options, method: "POST", body });
     },
     delete<TData = unknown>(
