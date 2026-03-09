@@ -30,6 +30,8 @@ export default function Page() {
     }
   }, [error]);
 
+  console.log("Page", products);
+
   return (
     <>
       <PageHeader>
