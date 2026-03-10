@@ -19,8 +19,6 @@ import GitHub from "./icons/github";
 
 export function AppHeader() {
   const location = useLocation();
-  console.log("AppHeader", location.pathname);
-
   return (
     <header className="bg-background sticky top-0 z-50 border-b">
       <div className="w-full ~max-w-7xl mx-auto flex items-center gap-2 h-14 px-4 md:px-8">
