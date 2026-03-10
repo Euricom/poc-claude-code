@@ -14,10 +14,9 @@
       "Bash(ls:*)",
       "Bash(cp:*)",
       "Bash(touch:*)",
-      "Bash(dotnet:*)",
       "Bash(tree:*)",
       "Bash(wc:*)",
-      "Bash(git add:*)",
+      "Bash(git:*)",
       "Edit",
       "Write",
       "WebSearch",
@@ -39,13 +38,23 @@
       "Bash(sudo:*)",
       "Bash(chown:*)",
       "Bash(chmod:*)",
-      "Bash(ssh:*)"
+      "Bash(ssh:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean:*)",
+      "Bash(git checkout -- :*)",
+      "Bash(git restore:*)",
+      "Bash(git branch -D:*)",
+      "Bash(git rebase:*)",
+      "Bash(git stash drop:*)"
     ],
     "ask": [
       "Bash(rm:*)",
+      "Bash(git merge:*)",
+      "Bash(git cherry-pick:*)",
       "Bash(git commit:*)",
-      "Bash(git push --force:*)",
-      "Bash(git reset --hard:*)"
+      "Bash(git push:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)"
     ]
   },
   "hooks": {
@@ -57,16 +66,6 @@
             "type": "command",
             "command": "CMD=$(jq -r '.tool_input.command // empty'); if [ \"$CMD\" = 'rm -rf /' ]; then echo 'BLOCKED: rm -rf / is not allowed' >&2; exit 2; fi",
             "name": "block-rm-rf-root"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "http",
-            "url": "http://localhost:3000/audit",
-            "name": "audit-bash-commands"
           }
         ]
       }
@@ -89,5 +88,23 @@
         ]
       }
     ]
+  },
+  "sandbox": {
+    "enabled": false,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowManagedDomainsOnly": true,
+      "allowedDomains": [
+        "https://code.claude.com",
+        "https://github.com",
+        "https://ui.shadcn.com",
+        "https://tanstack.com"
+      ]
+    },
+    "filesystem": {
+      "denyRead": [".env", ".env.*"],
+      "denyWrite": [".env*"]
+    }
   }
 }

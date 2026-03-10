@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    // http base hook
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:3000/audit",
+            "name": "audit-bash-commands"
+          }
+        ]
+      }
+    ]
+  },
+  // sandbox configuration
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowLocalBinding": true
+    },
+    "filesystem": {
+      "denyWrite": ["/.env", "/.env.*"],
+      "denyRead": ["/.env", "/.env.*"]
+    }
+  }
+
+}

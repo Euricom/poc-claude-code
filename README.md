@@ -53,8 +53,6 @@ cp $ROOT_WORKTREE_PATH/.env .env
 
 This will allow the agent to run npm scrips with the correct environment variables.
 
-### Conductor (see conductor.json)
-
 ### Worktrunk (see ./config/wt.toml)
 
 ```bash
