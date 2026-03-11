@@ -1,4 +1,4 @@
-# euri-demo-pr-review
+# poc-claude-code
 
 A React-based demo application for best AI practices, built with Vite, TypeScript, and TailwindCSS. 
 
