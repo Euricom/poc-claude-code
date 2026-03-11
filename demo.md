@@ -1,5 +1,40 @@
 # Demo
 
+## Hotkeys
+
+**General:**
+
+- `shift-tab`
+- `esc`
+- `esc + esc`
+- `ctrl+o` : toggle verbose mode
+- `ctrl+z` : suspend the terminal (mac only)
+- `ctrl+s` : stash prompt for next task
+- `ctrl+g` : open default editor (for large prompt or plan)
+- `ctrl+v` : past image into the prompt
+- `ctrl+r` : search through the prompt history
+- `up/down` : navigate through the prompt history
+- `option+t` : toggle thinking mode
+
+**Prompt:**
+
+- `option+left/right`: word left/right
+- `ctrl-a`: begin of the line
+- `ctrl+e`: end of the line
+- `ctrl+k`: delete word
+- `ctrl-u`: delete current line
+
+## Commands
+
+- `/clear`: clear the prompt
+- `/context`: show the context 
+- `/models`: switch between models
+- `/doktor`: check Claude Code installation health
+- `/usage`: Show plan usage
+- `/release-notes`: Show release notes
+
+## 
+
 ## Tasks
 
 ```

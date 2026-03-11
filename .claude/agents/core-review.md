@@ -5,7 +5,7 @@ tools:
 - Read
 - Grep
 - Glob 
-model: claude-haiku-4-5
+model: claude-opus-4-6
 ---
 
 # Code Review Agent

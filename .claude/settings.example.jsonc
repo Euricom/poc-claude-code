@@ -16,15 +16,20 @@
   },
   // sandbox configuration
   "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true,
+    "enabled": false,
+    "autoAllowBashIfSandboxed": false,
+    "allowUnsandboxedCommands": false,
     "network": {
-      "allowLocalBinding": true
+      "allowManagedDomainsOnly": true,
+      "allowedDomains": [
+        "https://github.com",
+        "https://ui.shadcn.com",
+        "https://tanstack.com"
+      ]
     },
     "filesystem": {
-      "denyWrite": ["/.env", "/.env.*"],
-      "denyRead": ["/.env", "/.env.*"]
+      "denyRead": [".env", ".env.*", ".npmrc", "*secret*"],
+      "denyWrite": [".env*", ".npmrc", "*secret*"]
     }
   }
-
 }

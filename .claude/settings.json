@@ -1,22 +1,33 @@
 {
   "permissions": {
     "allow": [
+      "Bash(gh pr list:*)",
       "Bash(ghx:*)",
-      "Bash(rg:*)",
       "Bash(readlink:*)",
       "Bash(mkdir:*)",
-      "Bash(npx:*)",
-      "Bash(bun:*)",
       "Bash(tsx:*)",
-      "Bash(find:*)",
-      "Bash(mv:*)",
-      "Bash(grep:*)",
-      "Bash(ls:*)",
-      "Bash(cp:*)",
       "Bash(touch:*)",
       "Bash(tree:*)",
       "Bash(wc:*)",
-      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(which:*)",
+      "Bash(node -e:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git add:*)",
+      "Bash(git branch:*)",
+      "Bash(git switch:*)",
+      "Bash(git checkout -b:*)",
+      "Bash(git stash:*)",
+      "Bash(git show:*)",
+      "Bash(git tag:*)",
+      "Bash(git remote:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(bun run lint:*)",
+      "Bash(bun run build:*)",
+      "Bash(bun run start:*)",
+      "Bash(bun run typecheck:*)",
       "Edit",
       "Write",
       "WebSearch",
@@ -25,36 +36,42 @@
       "WebFetch(domain:ui.shadcn.com)"
     ],
     "deny": [
-      "Bash(rm -rf:*)",
-      "Read(./.env)",
-      "Read(./.env.*)",
-      "Read(./secrets/**)",
-      "Read(./**/credentials.json)",
-      "Read(./**/credentials.*.json)",
-      "Read(./**/*.key)",
-      "Read(./**/*.pem)",
-      "Read(./**/*.cer)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(*secret*)",
       "Bash(tee:*)",
       "Bash(sudo:*)",
       "Bash(chown:*)",
       "Bash(chmod:*)",
-      "Bash(ssh:*)",
+      "Bash(env:*)",
+      "Bash(printenv:*)",
+      "Bash(export:*)",
+      "Bash(open:*)",
+      "Bash(base64:*)",
       "Bash(git reset --hard:*)",
       "Bash(git clean:*)",
       "Bash(git checkout -- :*)",
       "Bash(git restore:*)",
       "Bash(git branch -D:*)",
       "Bash(git rebase:*)",
-      "Bash(git stash drop:*)"
+      "Bash(git stash drop:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(kill:*)",
+      "Bash(pkill:*)",
+      "Bash(killall:*)",
+      "Bash(docker:*)",
+      "Bash(brew:*)"
     ],
     "ask": [
       "Bash(rm:*)",
-      "Bash(git merge:*)",
-      "Bash(git cherry-pick:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(git fetch:*)",
-      "Bash(git pull:*)"
+      "Bash(mv:*)",
+      "Bash(cp:*)",
+      "Bash(npx:*)",
+      "Bash(bun:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(git:*)"
     ]
   },
   "hooks": {
@@ -64,8 +81,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "CMD=$(jq -r '.tool_input.command // empty'); if [ \"$CMD\" = 'rm -rf /' ]; then echo 'BLOCKED: rm -rf / is not allowed' >&2; exit 2; fi",
-            "name": "block-rm-rf-root"
+            "command": "CMD=$(jq -r '.tool_input.command // empty'); if echo \"$CMD\" | grep -qE '^rm\\s+.*-[a-z]*r[a-z]*f|^rm\\s+.*-[a-z]*f[a-z]*r|^rm\\s+--recursive|^rm\\s+-r\\s'; then echo 'BLOCKED: recursive delete requires explicit approval. Use non-recursive rm or specify exact paths.' >&2; exit 2; fi",
+            "name": "block-rm-rf"
           }
         ]
       }
@@ -88,23 +105,5 @@
         ]
       }
     ]
-  },
-  "sandbox": {
-    "enabled": false,
-    "autoAllowBashIfSandboxed": true,
-    "allowUnsandboxedCommands": false,
-    "network": {
-      "allowManagedDomainsOnly": true,
-      "allowedDomains": [
-        "https://code.claude.com",
-        "https://github.com",
-        "https://ui.shadcn.com",
-        "https://tanstack.com"
-      ]
-    },
-    "filesystem": {
-      "denyRead": [".env", ".env.*"],
-      "denyWrite": [".env*"]
-    }
   }
 }
