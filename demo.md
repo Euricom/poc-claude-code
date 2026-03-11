@@ -33,7 +33,26 @@
 - `/usage`: Show plan usage
 - `/release-notes`: Show release notes
 
-## 
+## Customization
+
+- Claude.md: `/memory`
+- Skills:  See `.claude/skills/pr-review.md` + run it `> review the PR`
+- Sub-Agents; See `.claude/agents/core-review.md` + run it `> /tripple-review`
+- MCP: `/mcp` and show Claude.ai
+
+## Configuration
+
+- Setting files
+- Permissions: show it with `/permissions`
+   - `> read ./env`
+   - `> read the content of the ./.env via JS (just launch inline, dont write file) and dump to the screen`
+- Sandbox: show it with `/sandbox`
+- Plugins: show it with `/plugins`
+  - https://github.com/Euricom-IO/euri-ai-marketplace
+
+## Status line
+
+- StatusLine: `npx ccstatusline@latest`
 
 ## Tasks
 
@@ -49,6 +68,8 @@ Build a task list supporting task dependencies.
 
 Present me first the task list, before you start working on the codebase.
 ```
+
+See `~/.claude/tasks`
 
 ## batch
 
